@@ -1,19 +1,41 @@
-var filter = "";
-// 獲取輸入欄位和顯示值的元素
-const inputField = document.getElementById('inputField');
-const displayValue = document.getElementById('displayValue');
+var editor;
+var code;
 
-inputField.addEventListener('input', function(event) {
-    filter = event.target.value;
-    displayValue.textContent = filter;
+document.addEventListener('DOMContentLoaded', function() {
+    editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
+        lineNumbers: true,
+        mode: "javascript",
+        theme: "default"
+    });
+});
+
+applybtn.addEventListener('click', function() {
+  if(editor) {
+    code = editor.getValue();
+  }
+  alert('Filter code applied!');
 });
 
 
-chrome.devtools.network.onRequestFinished.addListener((request) => {
-  request.getContent((content) => {
-    console.log(filter);
-    if (content && content.includes(filter)) {
-      console.log(content);
-    }
+chrome.devtools.network.onRequestFinished.addListener(request => {
+  request.getContent((body) => {
+      const dataToSend = {
+          url: request.request.url,
+          method: request.request.method,
+          statusCode: request.response.status,
+          content: body 
+      };
+
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = chrome.runtime.getURL('sandbox.html');
+      document.body.appendChild(iframe);
+      iframe.onload = () => {
+          iframe.contentWindow.postMessage({
+              code: code,
+              context: dataToSend
+          }, '*');
+      };
   });
 });
+

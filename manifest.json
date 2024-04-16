@@ -3,5 +3,11 @@
   "description": "Automate the analysis of web APIs using your own rules.",
   "version": "1.1",
   "manifest_version": 3,
-  "devtools_page": "devtools.html"
+  "devtools_page": "devtools.html",
+  "permissions": [
+    "devtools"
+  ],
+  "sandbox": {
+    "pages": ["sandbox.html"]
+  }
 }
