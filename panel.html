@@ -6,32 +6,27 @@
     <title>AutoTsuki</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="lib/codemirror.css">
-
+    <link rel="stylesheet" href="styles.css">
     <script src="lib/codemirror.js"></script>
     <script src="lib/javascript.min.js"></script>
-
-
 </head>
 <body>
-    <h1>AutoTsuki</h1>
-    <h3>Automate the analysis of web APIs using your own rules.</h3>
-    <label for="templateSelect">Template:</label>
-    <select id="templateSelect">
-    </select>
-    <textarea id="code-editor"></textarea>
-
-    <button id="applybtn">Apply</button>
-    <button id="sharebtn">Share</button>
-    <button id="importbtn">Import</button>
+    <div class="container">
+        <h1>AutoTsuki</h1>
+        <h3>Automate the analysis of web APIs using your own rules.</h3>
+        <div class="form-control">
+            <label for="templateSelect">Template:</label>
+            <select id="templateSelect"></select>
+        </div>
+        <textarea id="code-editor"></textarea>
+        <div class="button-group">
+            <button id="applybtn">Apply</button>
+            <button id="sharebtn">Share</button>
+            <button id="importbtn">Import</button>
+        </div>
+    </div>
     <script src="panel.js" defer></script>
 </body>
 </html>
