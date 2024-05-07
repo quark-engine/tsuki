@@ -17,23 +17,21 @@
     <link rel="stylesheet" href="lib/codemirror.css">
 
     <script src="lib/codemirror.js"></script>
-    <script src="lib/codemirror.js"></script>
-    <script src="lib/myjs.js"></script>
+    <script src="lib/javascript.min.js"></script>
 
 
 </head>
 <body>
     <h1>AutoTsuki</h1>
     <h3>Automate the analysis of web APIs using your own rules.</h3>
-    <textarea id="code-editor"></textarea>
-    <label for="templateSelect">選擇一個選項：</label>
-    <select id="templateSelect" onchange="handleTemplateSelect()">
-        <option value="option1">選項 1</option>
-        <option value="option2">選項 2</option>
-        <option value="option3">選項 3</option>
+    <label for="templateSelect">Template:</label>
+    <select id="templateSelect">
     </select>
+    <textarea id="code-editor"></textarea>
 
     <button id="applybtn">Apply</button>
-    <script src="panel.js"></script>
+    <button id="sharebtn">Share</button>
+    <button id="importbtn">Import</button>
+    <script src="panel.js" defer></script>
 </body>
 </html>

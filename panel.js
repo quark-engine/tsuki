@@ -1,5 +1,25 @@
 var editor;
 var code;
+function encodeBase64(str) {
+    const encoder = new TextEncoder();
+    const encodedData = encoder.encode(str);
+
+    return btoa(String.fromCharCode.apply(null, encodedData));
+}
+
+function decodeBase64(base64str) {
+  const binaryStr = atob(base64str);
+
+  const len = binaryStr.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+      bytes[i] = binaryStr.charCodeAt(i);
+  }
+
+  const decoder = new TextDecoder();
+  return decoder.decode(bytes);
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
@@ -7,13 +27,44 @@ document.addEventListener('DOMContentLoaded', function() {
         mode: "javascript",
         theme: "default"
     });
-});
 
-applybtn.addEventListener('click', function() {
-  if(editor) {
-    code = editor.getValue();
-  }
-  alert('Filter code applied!');
+    chrome.storage.local.get(null, function(items) {
+        for (const key in items) {
+          console.log(key, items[key])
+            if (items.hasOwnProperty(key)) {
+                let option = new Option(key, key);
+                templateSelect.appendChild(option);
+            }
+        }
+    });
+
+  templateSelect.addEventListener("click", ()=>{
+      const template = templateSelect.value;
+      chrome.storage.local.get(template, items => {
+          editor.setValue(items[template]);
+      });
+  });
+
+  applybtn.addEventListener('click', function() {
+    if(editor) {
+      code = editor.getValue();
+    }
+    alert('Filter code applied!');
+  });
+
+  sharebtn.addEventListener('click', async () => {
+    const text = encodeBase64(editor.getValue());
+    console.log(text);
+    navigator.clipboard.writeText(text).then(function() {
+        alert('saved to your clipboard! Paste it anywhere to share!');
+    }, function(err) {
+        alert('save to your clipboard failed: ', err);
+    });
+  });
+  importbtn.addEventListener('click', function() {
+    const shareCode = prompt('Please enter the code to import:');
+    editor.setValue(decodeBase64(shareCode));
+  });
 });
 
 
