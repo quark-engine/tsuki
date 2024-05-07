@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AutoTsuki</title>
-    <script src="lib/codemirror.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="lib/codemirror.css">
-    <script src="lib/javascript.min.js"></script>
+
+    <script src="lib/codemirror.js"></script>
+    <script src="lib/codemirror.js"></script>
+    <script src="lib/myjs.js"></script>
 
 
 </head>
@@ -13,6 +26,13 @@
     <h1>AutoTsuki</h1>
     <h3>Automate the analysis of web APIs using your own rules.</h3>
     <textarea id="code-editor"></textarea>
+    <label for="templateSelect">選擇一個選項：</label>
+    <select id="templateSelect" onchange="handleTemplateSelect()">
+        <option value="option1">選項 1</option>
+        <option value="option2">選項 2</option>
+        <option value="option3">選項 3</option>
+    </select>
+
     <button id="applybtn">Apply</button>
     <script src="panel.js"></script>
 </body>
