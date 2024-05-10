@@ -13,7 +13,17 @@
 
 ## Quick Start
 
-TODO
+
+The first step is to download the extension.
+```bash
+git clone https://github.com/quark-engine/tsuki.git
+```
+
+The second step, please visit chrome://extensions, and click on "Load unpacked", then select the folder you just downloaded.
+
+Finally, you can open the Developer Tools, and you will find a new tab called "AutoTsuki", indicating that the installation was successful.
+
+![img](assets/preference.png)
 
 ## Documents
 
