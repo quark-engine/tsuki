@@ -52,6 +52,25 @@ document.addEventListener('DOMContentLoaded', function() {
     alert('Filter code applied!');
   });
 
+  savebtn.addEventListener('click', function() {
+    const templateName = prompt('Please enter the template name:');
+    const templateCode = editor.getValue();
+    chrome.storage.local.set({[templateName]: templateCode}, function() {
+        let option = new Option(templateName, templateName);
+        templateSelect.appendChild(option);
+        alert('Template saved successfully!');
+    });
+  });
+
+  deletebtn.addEventListener('click', function() {
+    const templateName = templateSelect.value;
+    chrome.storage.local.remove(templateName, function() {
+        templateSelect.remove(templateSelect.selectedIndex);
+        alert('Template deleted successfully!');
+        editor.setValue('');
+    });
+  });
+
   sharebtn.addEventListener('click', async () => {
     const text = encodeBase64(editor.getValue());
     console.log(text);
@@ -61,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('save to your clipboard failed: ', err);
     });
   });
+
   importbtn.addEventListener('click', function() {
     const shareCode = prompt('Please enter the code to import:');
     editor.setValue(decodeBase64(shareCode));

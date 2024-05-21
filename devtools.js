@@ -5,10 +5,12 @@ const defaultTemplate = {
 
 chrome.devtools.panels.create('AutoTsuki', 'icon.png', 'panel.html', () => {
   console.log('user switched to this panel');
+  /*
   chrome.storage.local.clear(()=>{
     console.log('Cleared storage');
   });
   chrome.storage.local.set(defaultTemplate, ()=>{
     console.log('Default template set.');
   });
+  */
 });
