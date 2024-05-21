@@ -1,32 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AutoTsuki</title>
+    <title>autotsuki</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=roboto:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="lib/codemirror.css">
     <link rel="stylesheet" href="styles.css">
     <script src="lib/codemirror.js"></script>
     <script src="lib/javascript.min.js"></script>
+    <style>
+        .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .button-group button {
+            padding: 10px 20px; 
+            margin: 5px; 
+            background-color: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            cursor: pointer; 
+        }
+
+        .button-group .divider {
+            height: 40px;
+            width: 2px;
+            background-color: #d3d3d3; 
+            margin: 0 15px;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group button {
+                margin: 10px 0;
+            }
+
+            .button-group .divider {
+            height: 2px; 
+            width: 160px; 
+            background-color: #d3d3d3; 
+            margin: 0 15px; 
+            }
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>AutoTsuki</h1>
-        <h3>Automate the analysis of web APIs using your own rules.</h3>
+        <h1>autotsuki</h1>
+        <h3>automate the analysis of web apis using your own rules.</h3>
         <div class="form-control">
-            <label for="templateSelect">Template:</label>
-            <select id="templateSelect"></select>
+            <label for="templateselect">template:</label>
+            <select id="templateselect"></select>
         </div>
         <textarea id="code-editor"></textarea>
+
         <div class="button-group">
-            <button id="applybtn">Apply</button>
-            <button id="savebtn">Save</button>
-            <button id="deletebtn">Delete</button>
-            <button id="sharebtn">Share</button>
-            <button id="importbtn">Import</button>
+            <div class="button-subgroup">
+                <button id="applybtn">Apply</button>
+            </div>
+            <div class="divider"></div>
+            <div class="button-subgroup">
+                <button id="savebtn">Save</button>
+                <button id="deletebtn">Delete</button>
+            </div>
+            <div class="divider"></div>
+            <div class="button-subgroup">
+                <button id="sharebtn">Share</button>
+                <button id="importbtn">Import</button>
+            </div>
         </div>
     </div>
     <script src="panel.js" defer></script>
